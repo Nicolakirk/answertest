@@ -74,7 +74,7 @@ describe("Login Functionality", () => {
     cy.contains("Sorry, this user has been locked out.").should("exist");
   });
 
-  it("should open the backpackpage for a problem user", () => {
+  it("should open the products for a problem_user", () => {
     // Enter username and password
     cy.get('input[name="user-name"]').type("problem_user");
     cy.get('input[name="password"]').type("secret_sauce");
@@ -84,6 +84,46 @@ describe("Login Functionality", () => {
 
     // Check if login is successful
     cy.url().should("include", "/inventory"); // Ensure URL has changed to products
-    cy.contains("Sauce Labs Backpack").should("exist"); // Check for products
+    cy.contains("Products").should("exist"); // Check for products
+  });
+
+
+  it("should open the products for a performance_glitch_user", () => {
+    // Enter username and password
+    cy.get('input[name="user-name"]').type("performance_glitch_user");
+    cy.get('input[name="password"]').type("secret_sauce");
+
+    // Submit the form
+    cy.get("form").submit();
+
+    // Check if login is successful
+    cy.url().should("include", "/inventory"); // Ensure URL has changed to products
+    cy.contains("Products").should("exist"); // Check for products
+  });
+
+  it("should open the products for the error_user", () => {
+    // Enter username and password
+    cy.get('input[name="user-name"]').type("error_user");
+    cy.get('input[name="password"]').type("secret_sauce");
+
+    // Submit the form
+    cy.get("form").submit();
+
+    // Check if login is successful
+    cy.url().should("include", "/inventory"); // Ensure URL has changed to products
+    cy.contains("Products").should("exist"); // Check for products
+  });
+
+  it("should open the products for the visual_user", () => {
+    // Enter username and password
+    cy.get('input[name="user-name"]').type("visual_user");
+    cy.get('input[name="password"]').type("secret_sauce");
+
+    // Submit the form
+    cy.get("form").submit();
+
+    // Check if login is successful
+    cy.url().should("include", "/inventory"); // Ensure URL has changed to products
+    cy.contains("Products").should("exist"); // Check for products
   });
 });
